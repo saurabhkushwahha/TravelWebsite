@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
-RUN bun run build
+RUN npm run build
 
 # Production stage
 # FROM oven/bun:alpine
