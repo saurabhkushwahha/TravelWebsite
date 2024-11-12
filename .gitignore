@@ -12,6 +12,8 @@
 /.next/
 /out/
 
+ashu.pem
+
 # production
 /build
 
