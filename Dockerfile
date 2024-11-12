@@ -6,13 +6,14 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Verify output folder
-RUN ls -l /app  # Check if 'out' exists
-
-# Runtime stage
+#Production stage
 FROM node:alpine
 WORKDIR /app
-COPY --from=builder /app/out /app/out  # Adjust this path if necessary
-RUN npm install -g serve
+COPY package*.json ./
+RUN npm install --production
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/next.config.js ./
+ENV NODE_ENV=production
 EXPOSE 3000
-CMD ["serve", "-s", "out", "-l", "3000"]
+CMD ["npm", "start"]
