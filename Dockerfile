@@ -16,7 +16,7 @@ RUN npm install --production
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/next.config.js ./
-COPY --from=builder /app/package.json ./  # Ensure package.json is also copied
+COPY --from=builder /app/package.json ./
 
 # Environment setup and port exposure
 ENV NODE_ENV=production
