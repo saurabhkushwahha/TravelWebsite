@@ -36,6 +36,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            sudo docker system prune -af --volumes
             sudo docker pull saurabhkushwahhaa/devopsca-app:latest
             sudo docker stop devopsca-app || true
             sudo docker rm devopsca-app || true
